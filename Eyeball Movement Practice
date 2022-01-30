@@ -1,5 +1,7 @@
 // Eyeball Movement Practice
 
+// Upon running the code on the terminal, a face will be seen. You can control eye-movement via the mouse cursor.
+
 function setup() {
   createCanvas(400, 400);
 }
