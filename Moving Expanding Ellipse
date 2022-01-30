@@ -1,5 +1,7 @@
 // Moving Expanding Ellipse
 
+// Upon running the code on a terminal, an ellipse moves diagonally while increasing in size.
+
 function setup() {
   createCanvas(400, 400);
 }
