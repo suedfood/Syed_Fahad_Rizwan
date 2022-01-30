@@ -1,6 +1,6 @@
 // Rookie Snowfall Animation
 
-// Upon running the code, you will see snowfall happening on a winter grassland.
+// Snowfall happening on a winter grassland.
 
 // variable declaration
 let xCoordinate = 0;
