@@ -1,6 +1,6 @@
 // Sunset Drive Animation
 
-// Upon running the code, you will see a red car driving at sunset along a beautiful beach. You'll see a flying airplane too. On moving the mouse cursor, the sun's mouth size will change too.
+// A red car driving at sunset along a beautiful beach. You'll see a flying airplane too. On moving the mouse cursor, the sun's mouth size will change too.
 
 let xPos = 0;
 let pPos = 0.5;
