@@ -61,7 +61,7 @@ function draw() {
   fill(255); // white
   arc(185.5, 271, 4, 4, 0, PI); // left pupil
   arc(221.5, 271, 4, 4, 0, PI); // right pupil
-
+  
   // hair
   fill(156, 103, 12); // brown hair color
   noStroke();
