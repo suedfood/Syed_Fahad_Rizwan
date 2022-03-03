@@ -1,15 +1,16 @@
 https://editor.p5js.org/suedfood/sketches/msylX0qEG
 
-let array = [];
+let array = []; // array containing the sphere spaceship
 
 function preload() {
-  maze = loadImage("Assets/spacemaze.png");
+  maze = loadImage("Assets/spacemaze.png"); // loads maze
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(600, 600); // creates canvas
 }
 
+// draws maze and calls ship functions
 function draw() {
   image(maze, 0, 0, width, height);
   for (let i = 0; i < array.length % 2; i++) {
@@ -19,23 +20,27 @@ function draw() {
   }
 }
 
+// spaceship appears upon pressing mouse
 function mousePressed() {
   let ship = new spaceship(215, 25, this.color);
   array.push(ship);
 }
 
+// class with spaceship attributes and methods
 class spaceship {
   constructor(xPos, yPos, color) {
-    this.x = xPos;
-    this.y = yPos;
-    this.color = color;
+    this.x = xPos; // xPos of center of circle
+    this.y = yPos; // yPos of center of circle
+    this.color = color; // to gain pixel value at xPos,yPos
   }
+  // makes circular ship
   drawShip() {
     noStroke();
     fill(255);
     this.color = ellipse(this.x, this.y, 20, 20);
     this.y = this.y + 0.5;
   }
+  // moves ship upon pressing keys
   moveShip() {
     if (keyCode == UP_ARROW) {
       this.y = this.y - 1;
@@ -47,6 +52,7 @@ class spaceship {
       this.x = this.x + 1;
     }
   }
+  // detects walls via pixel values
   detectWalls() {
     let pixValEllipseRT = this.color.get(this.x + 20, this.y - 20);
     print(pixValEllipseRT);
@@ -58,7 +64,8 @@ class spaceship {
     print(pixValEllipseLB);
     let pixValWalls = maze.get(20, 20);
     print(pixValWalls);
-
+    
+    // print statements to test if it works
     if (pixValEllipseRT === pixValWalls) {
       print("success RT");
     } else if (pixValEllipseRB === pixValWalls) {
