@@ -54,7 +54,7 @@ void loop() {
     digitalWrite(Red_LED, HIGH);
     digitalWrite(Green_LED, LOW);
   }
-  else if (distance >= 10 && distance <= 15) {
+  else if (distance > 10 && distance < 15) {
     analogWrite(Red_LED, 1);
     digitalWrite(Green_LED, LOW);
   }
