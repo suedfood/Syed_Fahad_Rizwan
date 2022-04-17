@@ -1,23 +1,20 @@
 // variable for the serial object
 let serial;
 let latestData = 0;
-
 // variable for brightness
 let bright = 0;
-
 // variables for ball bouncing
 let ypos = 0;
 let yspeed = 0;
 let yacc = 0.9;
 let size = 80;
-
 // canvas dimensions
 let width = 1023;
 let height = 600;
 
 // canvas creation and serial communication setup
 function setup() {
-  createCanvas(width,height);
+  createCanvas(width, height);
 
   serial = new p5.SerialPort();
 
@@ -62,7 +59,7 @@ function gotError(theerror) {
   print(theerror);
 }
 
-// receiving data from arduino 
+// receiving data from arduino
 function gotData() {
   let currentString = serial.readLine();
   trim(currentString);
@@ -73,6 +70,7 @@ function gotData() {
 // ellipse creation and wind command
 function draw() {
   background(255);
+  fill(0);
   ellipse(latestData, ypos, size);
   yspeed += yacc; // speed changes due to acceleration
   ypos += yspeed; // position changes due to speed
@@ -81,9 +79,9 @@ function draw() {
     yspeed = -yspeed;
   }
   // conditional to light LED up
-  if (ypos == height-size/2) {
+  if (ypos == height - size / 2) {
     bright = 255;
-  } else if (ypos < height-size/2) {
+  } else if (ypos < height - size / 2) {
     bright = 0;
   }
   // sends LED brightness to arduino
