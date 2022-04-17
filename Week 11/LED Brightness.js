@@ -1,17 +1,19 @@
 // global variable declaration
 
 // variable for the serial object
-let serial; 
-// variable to control brightness
-let brightness = 0; 
-// variables for both ends of color spectrum
-let Black; 
-let Red;
+let serial;
 
+// variable to control brightness
+let brightness = 0;
+
+// variables for both ends of color spectrum
+let Black;
+let Red;
 
 function setup() {
   // creating 600 X 600 canvas
   createCanvas(600, 600);
+  
   // defining colors
   Black = color(0);
   Red = color(255, 0, 0);
@@ -20,8 +22,7 @@ function setup() {
   serial = new p5.SerialPort();
 
   // serial port opening
-  serial.open('/dev/tty.usbmodem1101');
-
+  serial.open("/dev/tty.usbmodem1101");
 }
 
 // grading formation to make it user-friendly
@@ -44,7 +45,7 @@ function draw() {
 }
 
 // mouseY dictates brightness
-function mousePressed(){
+function mousePressed() {
   brightness = floor(map(mouseY, 0, 600, 0, 255));
   brightness = constrain(brightness, 0, 255);
   serial.write(brightness);
