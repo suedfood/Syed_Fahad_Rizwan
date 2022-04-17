@@ -1,44 +1,65 @@
-// Declare a "SerialPort" object
-var serial;
-var latestData = 0; // you'll use this to write incoming data to the canvas
-let ypos = 0;
+// global variable declaration
+let serial;
+let latestData = 20;
 
+// canvas creation and serial communication initiation
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1023, windowHeight);
 
-  // Instantiate our SerialPort object
   serial = new p5.SerialPort();
-  //copy this from serial control app
-  serial.open("/dev/tty.usbmodem143101");
-  serial.on('data', gotData);
+
+  serial.list();
+  serial.open("/dev/tty.usbmodem1101");
+
+  serial.on("connected", serverConnected);
+
+  serial.on("list", gotList);
+
+  serial.on("data", gotData);
+
+  serial.on("error", gotError);
+
+  serial.on("open", gotOpen);
+
+  serial.on("close", gotClose);
 }
 
+function serverConnected() {
+  print("Connected to Server");
+}
 
-// There is data available to work with from the serial port
-function gotData() {
-  var currentString = serial.readLine();
-  if (currentString.length > 0) {
-    latestData = Number(currentString);
-    console.log(latestData);
+function gotList(thelist) {
+  print("List of Serial Ports:");
+
+  for (let i = 0; i < thelist.length; i++) {
+    print(i + " " + thelist[i]);
   }
 }
 
-function draw() {
-  background(255, 255, 255);
-  fill(0, 0, 0);
-  //var mappedData = int(map(latestData, 900, 950, 0, height));
-  var mappedData = int(map(latestData, 200, 900, 0, height));
-  //var data = int(latestData-850);
-  //console.log(latestData, mappedData);
-  //ypos = lerp(ypos, mappedData, 0.03);
- 
-  ellipse(100, mappedData, 50, 50);
-  //text(data, 10, 10);
-
+function gotOpen() {
+  print("Serial Port is Open");
 }
 
-function mouseDragged() {
-  var output = int(map(mouseX, 0, width, 0, 180));
-  serial.write(output);
-  console.log(output);
+function gotClose() {
+  print("Serial Port is Closed");
+  latestData = "Serial Port is Closed";
+}
+
+function gotError(theerror) {
+  print(theerror);
+}
+
+// receiving data from Arduino
+function gotData() {
+  let currentString = serial.readLine();
+  trim(currentString);
+  if (!currentString) return;
+  console.log(currentString);
+  latestData = currentString;
+}
+
+// drawing ellipse & setting movement command
+function draw() {
+  background(150);
+  ellipse(latestData, height / 2, 80);
 }
