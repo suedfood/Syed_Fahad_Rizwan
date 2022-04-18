@@ -1,3 +1,5 @@
+// video link - https://drive.google.com/file/d/1j0-a2lgt0Ix9FUrL8rk4bzaTCSCdrRCn/view?usp=sharing
+
 // variable for the serial object
 let serial;
 let latestData = 0;
