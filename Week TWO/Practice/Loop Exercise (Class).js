@@ -11,6 +11,5 @@ function draw() {
   for(let i =0; i<height; i=i+20) {
     strokeWeight(random(1,5));
     line(0,i,mouseX,i)
-  }
-  
+  } 
 }
